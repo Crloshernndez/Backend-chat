@@ -4,7 +4,7 @@ const getUsers = async (filterUser) => {
   const users = await store.getUsers(filterUser);
   return users;
 };
-const addUser = (name) => {
+const addUser = async (name) => {
   if (!name) {
     console.log("Invalid Name");
     return false;
@@ -14,7 +14,8 @@ const addUser = (name) => {
     name,
   };
 
-  return store.addUser(user);
+  const newUser = await store.addUser(user);
+  return newUser;
 };
 const updateUser = (id, name) => {
   return async () => {
