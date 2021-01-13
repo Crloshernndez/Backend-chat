@@ -54,3 +54,5 @@ const deleteUser = (req, res) => {
       response.error(req, res, e.message, 500);
     });
 };
+
+module.exports = router;
