@@ -1,12 +1,12 @@
 const express = require("express");
 
-// const message = require("../components/message/network");
+const message = require("../components/message/network");
 const user = require("./../components/users/network");
 // const chat = require("../components/chat/network");
 
 // creates routes for all components
 const routes = (server) => {
-  // server.use("/message", message);
+  server.use("/message", message);
   server.use("/user", user);
   // server.use("/chat", chat);
 };
