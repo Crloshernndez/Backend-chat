@@ -9,7 +9,7 @@ router.post("/", addUser);
 router.patch("/:id", updateUser);
 router.delete("/:id", deleteUser);
 
-const getUsers = (req, res) => {
+function getUsers(req, res) {
   const filterUser = req.query.name || null;
 
   controller
@@ -20,9 +20,9 @@ const getUsers = (req, res) => {
     .catch((e) => {
       response.error(req, res, e.message, 500);
     });
-};
+}
 
-const addUser = (req, res) => {
+function addUser(req, res) {
   controller
     .addUser(req.body.name)
     .then((newUser) => {
@@ -31,20 +31,20 @@ const addUser = (req, res) => {
     .catch((e) => {
       response.error(req, res, e.message, 500);
     });
-};
+}
 
-const updateUser = (req, res) => {
+function updateUser(req, res) {
   controller
     .updateUser(req.params.id, req.body.name)
-    .them((data) => {
+    .then((data) => {
       response.success(req, res, data, 200);
     })
     .catch((e) => {
       response.error(req, res, e.message, 500);
     });
-};
+}
 
-const deleteUser = (req, res) => {
+function deleteUser(req, res) {
   controller
     .deleteUser(req.params.id)
     .then(() => {
@@ -53,6 +53,6 @@ const deleteUser = (req, res) => {
     .catch((e) => {
       response.error(req, res, e.message, 500);
     });
-};
+}
 
 module.exports = router;

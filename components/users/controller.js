@@ -17,18 +17,17 @@ const addUser = async (name) => {
   const newUser = await store.addUser(user);
   return newUser;
 };
-const updateUser = (id, name) => {
-  return async () => {
-    if (!id || !name) {
-      console.log("Invalid Data");
-      return false;
-    }
+const updateUser = async (id, name) => {
+  if (!id || !name) {
+    console.log("Invalid Data");
+    return false;
+  }
 
-    const result = await store.updateUser(id, name);
+  const result = await store.updateUser(id, name);
 
-    return result;
-  };
+  return result;
 };
+
 const deleteUser = (id) => {
   if (!id) {
     console.log("Invalid Id");
