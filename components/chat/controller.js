@@ -5,18 +5,20 @@ const getChats = async (filterChat) => {
   return chats;
 };
 
-const addChat = async (users) => {
-  if (!users || users.length < 2) {
-    console.log("Invalid Amound Of Users");
-    return false;
-  }
+const addChat = (users) => {
+  return new Promise((resolve, reject) => {
+    if (!users || users.length < 2) {
+      reject("Invalid Amound Of Users");
+      return false;
+    }
 
-  const chat = {
-    users: users,
-  };
+    const chat = {
+      users: users,
+    };
 
-  const newChat = await store.addChat(users);
-  return newChat;
+    store.addChat(chat);
+    resolve(chat);
+  });
 };
 const deleteChat = (id) => {
   if (!id) {

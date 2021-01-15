@@ -9,7 +9,7 @@ router.post("/", addChat);
 router.delete("/:id", deleteChat);
 
 function getChats(req, res) {
-  const filterChat = req.query.id || null;
+  const filterChat = req.query._id || null;
 
   controller
     .getChats(filterChat)
@@ -17,7 +17,7 @@ function getChats(req, res) {
       responses.success(req, res, chatList, 200);
     })
     .catch((e) => {
-      responses.error(req, res, e.message, 500);
+      responses.error(req, res, "Internal Error", 500);
     });
 }
 
@@ -42,3 +42,5 @@ function deleteChat(req, res) {
       responses.error(req, res, e.message, 500);
     });
 }
+
+module.exports = router;
