@@ -5,7 +5,7 @@ const getChats = (filterChat) => {
     let filter = {};
 
     if (filterChat !== null) {
-      filter = { _id: filterChat };
+      filter = { chat: filterChat };
     }
 
     Model.find(filter)

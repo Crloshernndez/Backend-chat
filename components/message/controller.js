@@ -5,21 +5,23 @@ const getMessages = async (filterMessage) => {
   return messages;
 };
 
-const addMessage = async (chat, user, message) => {
-  if (!chat || !user || !message) {
-    console.log("missing message or chat or user");
-    return false;
-  }
+const addMessage = (chat, user, message) => {
+  return new Promise((resolve, reject) => {
+    if (!chat || !user || !message) {
+      reject("missing message or chat or user");
+      return false;
+    }
 
-  const fullMessage = {
-    chat: chat,
-    user: user,
-    message: message,
-    date: new Date(),
-  };
+    const fullMessage = {
+      chat: chat,
+      user: user,
+      message: message,
+      date: new Date(),
+    };
 
-  message = await store.addMessage(fullMessage);
-  return message;
+    store.addMessage(fullMessage);
+    resolve(fullMessage);
+  });
 };
 
 const updateMessage = async (id, message) => {

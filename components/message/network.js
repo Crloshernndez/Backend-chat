@@ -10,7 +10,7 @@ router.patch("/:id", updateMessage);
 router.delete("/:id", deleteMessage);
 
 function getMessages(req, res) {
-  const filterMessage = req.query.chat || null;
+  const filterMessage = req.query.id || null;
 
   controller
     .getMessages(filterMessage)
@@ -24,8 +24,8 @@ function getMessages(req, res) {
 function addMessage(req, res) {
   controller
     .addMessage(req.body.chat, req.body.user, req.body.message)
-    .then((message) => {
-      responses.success(req, res, message, 201);
+    .then((data) => {
+      responses.success(req, res, data, 201);
     })
     .catch((e) => {
       responses.error(req, res, e.message, 400);

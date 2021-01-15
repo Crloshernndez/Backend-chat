@@ -10,6 +10,7 @@ const getMessages = (filterMessage) => {
 
     Model.find(filter)
       .populate("user")
+      .populate("chat")
       .exec((error, populated) => {
         if (error) {
           reject(error);
@@ -22,7 +23,7 @@ const getMessages = (filterMessage) => {
 
 const addMessage = (message) => {
   const myMessage = new Model(message);
-  myMessage.save();
+  return myMessage.save();
 };
 
 const updateMessage = async (id, message) => {
