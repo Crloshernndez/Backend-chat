@@ -43,7 +43,7 @@ function updateMessage(req, res) {
 }
 function deleteMessage(req, res) {
   controller
-    .updateMessage(req.params.id)
+    .deleteMessage(req.params.id)
     .then(() => {
       responses.success(req, res, `message ${req.params.id} delated`);
     })
