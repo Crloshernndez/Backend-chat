@@ -4,16 +4,16 @@ const controller = require("./controller");
 
 const router = express.Router();
 
-router.get("/", getMessges);
+router.get("/", getMessages);
 router.post("/", addMessage);
 router.patch("/:id", updateMessage);
 router.delete("/:id", deleteMessage);
 
-function getMessges(req, res) {
+function getMessages(req, res) {
   const filterMessage = req.query.chat || null;
 
   controller
-    .getMessges(filterMessage)
+    .getMessages(filterMessage)
     .then((messageList) => {
       responses.success(req, res, messageList, 200);
     })
